@@ -54,12 +54,15 @@ char* btoa(const unsigned char* s) {
         result[result_len - 2] = '=';
     }
 
+    result[result_len - 1] = '\0';
+
     return result;
 }
 
 
 char* atob(const char* s) {
     char *result = malloc(sizeof(char));
+
     int i = 0, mod, result_len = 1;
     size_t len = strlen(s);
 
@@ -72,7 +75,6 @@ char* atob(const char* s) {
         if(s[i] == '=') {
             break;
         }
-
         mod = i % 4;
         switch (mod) {
             case 0:
@@ -96,5 +98,6 @@ char* atob(const char* s) {
         i++;
     }
 
+    result[result_len-1] = '\0';
     return result;
 }
