@@ -1,7 +1,6 @@
 #include "base64.h"
 #include <stdio.h> // prinf()
 #include <stdlib.h> // free()
-#include <string.h> // strlen()
 
 static int main_ret = 0;
 static int test_count = 0;
@@ -10,7 +9,8 @@ static int test_pass = 0;
 static void test_btoa() {
     char* result;
     const char* s1 = "÷";
-    result = btoa(s1);
+    printf("%s\n", s1);
+    result = btoa((unsigned char*)s1);
     printf("%s\n", result);
 
 
@@ -32,15 +32,20 @@ static void test_btoa() {
     printf("%zu\n", strlen(test));
     */
 
-    const char* s2 = "晋严÷abcd";
-    result = btoa(s2);
+    const char* s2 = "晋严÷abcd《如何变得有思想》出版了！";
+    printf("%s\n", s2);
+    result = btoa((unsigned char*)s2);
     printf("%s\n", result);
 
     free(result);
 }
 
 static void test_atob() {
-
+    char* result;
+    char* s = "5pmL5Lilw7dhYmNk44CK5aaC5L2V5Y+Y5b6X5pyJ5oCd5oOz44CL5Ye654mI5LqG77yB";
+    result = atob(s);
+    printf("%s\n", result);
+    free(result);
 }
 
 int main() {
